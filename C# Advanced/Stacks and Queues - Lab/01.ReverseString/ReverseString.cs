@@ -16,10 +16,18 @@ namespace _01.ReverseString
                 stack.Push(character);
             }
 
-            while (stack.Count > 0)
+            // Second answer with foreach
+            // while (stack.Count > 0)
+            // {
+            //     Console.Write(stack.Pop()); // delete elements
+            // }
+
+            foreach (var item in stack)
             {
-                Console.Write(stack.Pop());
+                Console.Write(item); //(stack.Count) Just read elements, didnt delete elements.
             }
+
+
             Console.WriteLine();
         }
     }
