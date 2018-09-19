@@ -14,7 +14,7 @@ namespace _06.TrafficLight
 
             while ((command = Console.ReadLine()) != "end")
             {
-                if (command == "green") 
+                if (command == "green") //When its green, we remove cars from queue(which we add in 'else' statement).
                 {
                     for (int i = 0; i < carsToPass; i++) //Number of cars that have to pass the road.
                     {
@@ -27,7 +27,7 @@ namespace _06.TrafficLight
                 }
                 else
                 {
-                    queue.Enqueue(command);
+                    queue.Enqueue(command); //When its not green, we add cars to the queue.
                 }
             }
             Console.WriteLine($"{carsPassedCounter} cars passed the crossroads.");
