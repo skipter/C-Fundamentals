@@ -5,13 +5,17 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.ReverseNumberswithStack", "01.ReverseNumberswithStack\01.ReverseNumberswithStack.csproj", "{F8613BA7-1F85-43D5-B630-4C559121217C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.BasicStackOperations", "02.BasicStackOperations\02.BasicStackOperations.csproj", "{FBFE5604-1A50-49EA-8AB8-192677A2CC67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.BasicStackOperations", "02.BasicStackOperations\02.BasicStackOperations.csproj", "{FBFE5604-1A50-49EA-8AB8-192677A2CC67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.MaximumElement", "03.MaximumElement\03.MaximumElement.csproj", "{732EC8D5-FD18-4D60-9993-1D30EFAA11EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.MaximumElement", "03.MaximumElement\03.MaximumElement.csproj", "{732EC8D5-FD18-4D60-9993-1D30EFAA11EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.BasicQueueOperations", "04.BasicQueueOperations\04.BasicQueueOperations.csproj", "{004A4D68-63B3-4B73-9702-C35C9BA966C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.BasicQueueOperations", "04.BasicQueueOperations\04.BasicQueueOperations.csproj", "{004A4D68-63B3-4B73-9702-C35C9BA966C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.SequenceWithQueue", "05.SequenceWithQueue\05.SequenceWithQueue.csproj", "{92DC361D-7AF3-4C0C-91C1-670473C06A63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.SequenceWithQueue", "05.SequenceWithQueue\05.SequenceWithQueue.csproj", "{92DC361D-7AF3-4C0C-91C1-670473C06A63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.TruckTour", "06.TruckTour\06.TruckTour.csproj", "{AC9A46E2-321A-4DB9-9C20-5E88E2690E5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.BalancedParenthesis", "07.BalancedParenthesis\07.BalancedParenthesis.csproj", "{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{92DC361D-7AF3-4C0C-91C1-670473C06A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92DC361D-7AF3-4C0C-91C1-670473C06A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92DC361D-7AF3-4C0C-91C1-670473C06A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC9A46E2-321A-4DB9-9C20-5E88E2690E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9A46E2-321A-4DB9-9C20-5E88E2690E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC9A46E2-321A-4DB9-9C20-5E88E2690E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC9A46E2-321A-4DB9-9C20-5E88E2690E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
