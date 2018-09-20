@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.BasicQueueOperations", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.SequenceWithQueue", "05.SequenceWithQueue\05.SequenceWithQueue.csproj", "{92DC361D-7AF3-4C0C-91C1-670473C06A63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.TruckTour", "06.TruckTour\06.TruckTour.csproj", "{AC9A46E2-321A-4DB9-9C20-5E88E2690E5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.TruckTour", "06.TruckTour\06.TruckTour.csproj", "{AC9A46E2-321A-4DB9-9C20-5E88E2690E5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.BalancedParenthesis", "07.BalancedParenthesis\07.BalancedParenthesis.csproj", "{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.BalancedParenthesis", "07.BalancedParenthesis\07.BalancedParenthesis.csproj", "{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.StackFibonacci", "08.StackFibonacci\08.StackFibonacci.csproj", "{6AD39BD4-2C7C-4E07-A8AA-ADB5155E9B46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DCC3E25-A6FE-4CDF-8258-4CB04119F8D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD39BD4-2C7C-4E07-A8AA-ADB5155E9B46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD39BD4-2C7C-4E07-A8AA-ADB5155E9B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD39BD4-2C7C-4E07-A8AA-ADB5155E9B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD39BD4-2C7C-4E07-A8AA-ADB5155E9B46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
