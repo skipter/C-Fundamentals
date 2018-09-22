@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.PoisonousPlants", "10.Po
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.PoisonousPlants.v2", "10.PoisonousPlants.v2\10.PoisonousPlants.v2.csproj", "{02F0659E-ED72-45DE-8378-A6CE4471DC22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.ReverseNumbers.v2", "01.ReverseNumbers.v2\01.ReverseNumbers.v2.csproj", "{2A6DFF97-B741-4132-B59C-5F08127DDEE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{02F0659E-ED72-45DE-8378-A6CE4471DC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02F0659E-ED72-45DE-8378-A6CE4471DC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02F0659E-ED72-45DE-8378-A6CE4471DC22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A6DFF97-B741-4132-B59C-5F08127DDEE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6DFF97-B741-4132-B59C-5F08127DDEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6DFF97-B741-4132-B59C-5F08127DDEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6DFF97-B741-4132-B59C-5F08127DDEE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

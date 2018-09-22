@@ -9,7 +9,7 @@ namespace _01.ReverseNumberswithStack
         static void Main(string[] args)
         {
             var numbers = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
-            //Can you also a Stack<string> 
+            //Can you also use a Stack<string> 
             Stack<int> stack = new Stack<int>(numbers);
             foreach (var number in stack)
             {
