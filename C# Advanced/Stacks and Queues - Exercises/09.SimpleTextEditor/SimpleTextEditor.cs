@@ -7,15 +7,15 @@ namespace _09.SimpleTextEditor
         static void Main(string[] args)
         {
             int num = int.Parse(Console.ReadLine());
-
+            string text = String.Empty;
             Stack<string> stack = new Stack<string>();
 
             for (int i = 0; i < num; i++)
             {
-                string[] tokens = Console.ReadLine().Split(" ");
+                string[] tokens = Console.ReadLine().Split();
                 int operation = int.Parse(tokens[0]);
 
-                string text = String.Empty;
+                
                 switch (operation)
                 {
                     case 1:
