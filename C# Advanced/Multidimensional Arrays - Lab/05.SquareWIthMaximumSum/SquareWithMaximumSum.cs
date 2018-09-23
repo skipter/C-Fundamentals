@@ -5,7 +5,7 @@ namespace _05.SquareWIthMaximumSum
 {
     class SquareWithMaximumSum
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int[] sizes = Console.ReadLine()      //Matrix size.
                 .Split(',', StringSplitOptions.RemoveEmptyEntries)
