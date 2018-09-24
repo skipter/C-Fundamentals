@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.MatrixOfPalindromes", "01.MatrixOfPalindromes\01.MatrixOfPalindromes.csproj", "{ABCDDA88-15E8-4659-8208-6EBCA4EE05E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.DiagonalDifference", "02.DiagonalDifference\02.DiagonalDifference.csproj", "{D5F277CA-E1CA-40A6-99E9-48D90ED35277}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABCDDA88-15E8-4659-8208-6EBCA4EE05E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABCDDA88-15E8-4659-8208-6EBCA4EE05E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABCDDA88-15E8-4659-8208-6EBCA4EE05E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABCDDA88-15E8-4659-8208-6EBCA4EE05E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5F277CA-E1CA-40A6-99E9-48D90ED35277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5F277CA-E1CA-40A6-99E9-48D90ED35277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5F277CA-E1CA-40A6-99E9-48D90ED35277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5F277CA-E1CA-40A6-99E9-48D90ED35277}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {992239DD-0006-4753-A81A-1D9854100F3F}
+	EndGlobalSection
+EndGlobal
