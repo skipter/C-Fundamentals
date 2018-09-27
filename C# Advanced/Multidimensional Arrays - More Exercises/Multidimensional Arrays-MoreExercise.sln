@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.LegoBlocks", "01.LEgoBlo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.ParkingSystem", "05.ParkingSystem\05.ParkingSystem.csproj", "{F46D2CA1-6ED3-4D41-8BEC-A99DFF429E40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.RadioactiveMutantVampireBunnies", "02.RadioactiveMutantVampireBunnies\02.RadioactiveMutantVampireBunnies.csproj", "{F768DD09-D964-438D-AAC5-F837C658C503}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.RadioactiveMutantVampireBunnies", "02.RadioactiveMutantVampireBunnies\02.RadioactiveMutantVampireBunnies.csproj", "{F768DD09-D964-438D-AAC5-F837C658C503}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.Crossfire", "03.Crossfire\03.Crossfire.csproj", "{CF702790-9824-4DE5-8B66-F35586E36B43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.Crossfire", "03.Crossfire\03.Crossfire.csproj", "{CF702790-9824-4DE5-8B66-F35586E36B43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.TheHeiganDance", "04.TheHeiganDance\04.TheHeiganDance.csproj", "{E52BB4D7-5E2D-4731-8BA6-9D84EB9B75FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.StringMatrixRotation", "06.StringMatrixRotation\06.StringMatrixRotation.csproj", "{ED981FFA-7E94-4AEE-AD8F-914A53542D8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{CF702790-9824-4DE5-8B66-F35586E36B43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF702790-9824-4DE5-8B66-F35586E36B43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF702790-9824-4DE5-8B66-F35586E36B43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E52BB4D7-5E2D-4731-8BA6-9D84EB9B75FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E52BB4D7-5E2D-4731-8BA6-9D84EB9B75FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E52BB4D7-5E2D-4731-8BA6-9D84EB9B75FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E52BB4D7-5E2D-4731-8BA6-9D84EB9B75FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED981FFA-7E94-4AEE-AD8F-914A53542D8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED981FFA-7E94-4AEE-AD8F-914A53542D8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED981FFA-7E94-4AEE-AD8F-914A53542D8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED981FFA-7E94-4AEE-AD8F-914A53542D8B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
