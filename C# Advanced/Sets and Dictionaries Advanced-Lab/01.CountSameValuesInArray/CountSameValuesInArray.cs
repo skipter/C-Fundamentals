@@ -15,9 +15,20 @@ namespace _01.CountSameValuesInArray
 
             Dictionary<double, int> dict = new Dictionary<double, int>();
 
+            foreach (var item in inputArray)
+            {
+                if (!dict.ContainsKey(item))
+                {
+                    dict.Add(item, 0);
+                }
 
+                dict[item]++;
+            }
 
-
+            foreach (var item in dict)
+            {
+                Console.WriteLine($"{item.Key} - {item.Value} times");
+            }
         }
     }
 }
