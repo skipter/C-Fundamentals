@@ -5,9 +5,15 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.ReadFromFile", "01.ReadFromFile\01.ReadFromFile.csproj", "{4F596520-7486-46CD-B368-4A50C708E517}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.ReadAndReverseString", "02.ReadAndReverseString\02.ReadAndReverseString.csproj", "{EEB55CF1-631F-4D66-A004-7FA6DDB85223}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.ReadAndReverseString", "02.ReadAndReverseString\02.ReadAndReverseString.csproj", "{EEB55CF1-631F-4D66-A004-7FA6DDB85223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.ReadAndReverseTextV2", "02.ReadAndReverseTextV2\02.ReadAndReverseTextV2.csproj", "{05BF4526-DFBB-42B3-B819-779626413372}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.ReadAndReverseTextV2", "02.ReadAndReverseTextV2\02.ReadAndReverseTextV2.csproj", "{05BF4526-DFBB-42B3-B819-779626413372}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.WritingFileToText", "03.WritingFileToText\03.WritingFileToText.csproj", "{364F6BE3-8054-4C64-83FB-16450F1CDFAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.ReadingInMemoryString", "04.ReadingInMemoryString\04.ReadingInMemoryString.csproj", "{56A66D8D-CD49-4116-A374-F3CCB7C8074F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.SimpleTCPServer", "05.SimpleTCPServer\05.SimpleTCPServer.csproj", "{42B6DF67-2DBB-4FC5-B1E4-5395B214A3C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,18 @@ Global
 		{05BF4526-DFBB-42B3-B819-779626413372}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05BF4526-DFBB-42B3-B819-779626413372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05BF4526-DFBB-42B3-B819-779626413372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{364F6BE3-8054-4C64-83FB-16450F1CDFAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{364F6BE3-8054-4C64-83FB-16450F1CDFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{364F6BE3-8054-4C64-83FB-16450F1CDFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{364F6BE3-8054-4C64-83FB-16450F1CDFAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56A66D8D-CD49-4116-A374-F3CCB7C8074F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56A66D8D-CD49-4116-A374-F3CCB7C8074F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56A66D8D-CD49-4116-A374-F3CCB7C8074F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56A66D8D-CD49-4116-A374-F3CCB7C8074F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B6DF67-2DBB-4FC5-B1E4-5395B214A3C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B6DF67-2DBB-4FC5-B1E4-5395B214A3C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B6DF67-2DBB-4FC5-B1E4-5395B214A3C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B6DF67-2DBB-4FC5-B1E4-5395B214A3C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
