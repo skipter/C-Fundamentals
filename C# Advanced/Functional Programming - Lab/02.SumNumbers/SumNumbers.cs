@@ -9,10 +9,14 @@ namespace _02.SumNumbers
         {
             var numbers = Console.ReadLine()
                 .Split(", ")
-                .Select(int.Parse).ToArray();
+                .Select(n => n.Trim())
+                .Select(parse)
+                .ToArray();
 
             Console.WriteLine(numbers.Count());
             Console.WriteLine(numbers.Sum());
         }
+
+        public static Func<string, int> parse = n => Int32.Parse(n);
     }
 }
