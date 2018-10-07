@@ -8,16 +8,18 @@ namespace _06.ReverseAndExclude
     {
         static void Main()
         {
-            List<int> numbers = Console.ReadLine()
+            var numbers = Console.ReadLine()
                     .Split(" ", StringSplitOptions.RemoveEmptyEntries)
-                    .Select(int.Parse)
-                    .ToList();
+                    .Select(int.Parse);
 
             int divNum = int.Parse(Console.ReadLine());
 
-            Func<List<int>, List<int>> removeNums = x => x.RemoveAll(y => y % divNum == 0).ToList();
+            Predicate<int> filter = x => x % divNum != 0;
+            Func<int, bool> filterFunc = x => filter(x);
 
+            numbers = numbers.Where(filterFunc);
+
+            Console.WriteLine(String.Join(" ", numbers.Reverse()));
         }
-        public static Action<List<int>> reverseFunc = nums => nums.Reverse();
     }
 }
