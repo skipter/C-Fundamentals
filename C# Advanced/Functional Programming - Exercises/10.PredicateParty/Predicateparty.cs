@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace _10.PredicateParty
 {
-    class Predicateparty
+    class PredicateParty
     {
         static void Main()
         {
@@ -12,7 +12,7 @@ namespace _10.PredicateParty
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
             Predicate<string> predicate;
-            Action<List<string>> print = names => Console.WriteLine(String.Join(", ", names) + " are going to party!");
+            Action<List<string>> print = names => Console.WriteLine(String.Join(", ", names) + " are going to the party!");
 
             string input = Console.ReadLine();
 
@@ -47,7 +47,7 @@ namespace _10.PredicateParty
 
             if (guests.Count == 0)
             {
-                Console.WriteLine("Nobody is going to party!");
+                Console.WriteLine("Nobody is going to the party!");
             }
             else
             {
