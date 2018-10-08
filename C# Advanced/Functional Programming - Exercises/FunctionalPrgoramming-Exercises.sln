@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.PredicateForNames", "07.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.CustomComparator", "08.CustomComparator\08.CustomComparator.csproj", "{B7567A3C-6001-4C54-AFBC-07F480AC96EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.ListOfPredicates", "09.ListOfPredicates\09.ListOfPredicates.csproj", "{71CAEDBF-0286-4952-8EEE-FB0A7B5D7EB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.PredicateParty", "10.PredicateParty\10.PredicateParty.csproj", "{6134A9A1-4F5B-4BB9-A4C3-51F5C2308951}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{B7567A3C-6001-4C54-AFBC-07F480AC96EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7567A3C-6001-4C54-AFBC-07F480AC96EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7567A3C-6001-4C54-AFBC-07F480AC96EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71CAEDBF-0286-4952-8EEE-FB0A7B5D7EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71CAEDBF-0286-4952-8EEE-FB0A7B5D7EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71CAEDBF-0286-4952-8EEE-FB0A7B5D7EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71CAEDBF-0286-4952-8EEE-FB0A7B5D7EB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6134A9A1-4F5B-4BB9-A4C3-51F5C2308951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6134A9A1-4F5B-4BB9-A4C3-51F5C2308951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6134A9A1-4F5B-4BB9-A4C3-51F5C2308951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6134A9A1-4F5B-4BB9-A4C3-51F5C2308951}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

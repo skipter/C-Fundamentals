@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace _08.CustomComparator
@@ -7,20 +8,21 @@ namespace _08.CustomComparator
     {
         static void Main()
         {
-            var input = Console.ReadLine()
+            Action<int[]> print = p => Console.WriteLine(String.Join(" ", p));
+
+            Func<int, int, int> sort = (a, b) =>
+                (a % 2 == 0 & b % 2 != 0) ? -1 :
+                 (a % 2 != 0 & b % 2 == 0) ? 1 :
+                 a.CompareTo(b);
+
+            int[] arr = Console.ReadLine()
                 .Split(" ", StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse);
+                .Select(int.Parse)
+                .ToArray();
 
-            Func<int, bool> even = x => x % 2 == 0;
-            Func<int, bool> odd = x => x % 2 != 0;
+            Array.Sort(arr, new Comparison<int>(sort));
 
-            input = input.Where(even).OrderBy(x => x);
-            input = input.Where(odd).OrderBy(x => x);
-
-            Console.WriteLine(String.Join(" ", input));
-
-            //Console.Write(String.Join(" ", input.Where(even).OrderBy(x => x)));
-            //Console.Write(String.Join(" ", input.Where(odd).OrderBy(x => x)));
+            print(arr);
 
         }
     }
