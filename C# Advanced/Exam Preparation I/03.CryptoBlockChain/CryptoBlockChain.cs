@@ -37,7 +37,7 @@ namespace _03.CryptoBlockChain
             for (int i = 0; i < validate.Count; i++)
             {
                 string nums = String.Empty;
-
+                //check symbol is a number
                 for (int j = 0; j < validate[i].Length; j++)
                 {
                     if (Char.IsDigit(validate[i][j]))
@@ -45,24 +45,27 @@ namespace _03.CryptoBlockChain
                         nums += validate[i][j];
                     }
                 }
-
+                //check if string % 3 = 0
                 if (nums.Length % 3 != 0)
                 {
                     continue;
                 }
 
-                string numPattern = @"[0-9]{3}";
+                string numPattern = @"[0-9]{3}"; //make number by groups of 3 numbers
                 MatchCollection numMatches = Regex.Matches(nums, numPattern);
 
                 foreach (var match in numMatches)
                 {
+                    //take evry num
                     int num = int.Parse(match.ToString());
                     num -= validate[i].Length;
-
+                    //Convert num to char - ascii number -> symbol
                     char ch = (char)num;
+                    //concat chars
                     output += ch;
                 }
             }
+            //print result
             Console.WriteLine(output);
         }
     }
