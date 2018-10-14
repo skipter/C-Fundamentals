@@ -37,33 +37,37 @@ namespace _01.Problem
                 {
                     remainLitters += currentBottle - currentCup;
                     bottles.Pop();
+                    if (bottles.Count > 0 && cups.Count > 0)
+                    {
+                        currentCup = cups.Peek();
+                        currentBottle = bottles.Peek();
+                        continue;
+                    }
+                    break;
                 }
                 else
                 {
-                    if (last != 0)
-                    {
-                        currentCup -= last;
-                    }
-                    last = currentCup - currentBottle;
+                    currentCup = currentCup - currentBottle;
                     bottles.Pop();
+                    if (bottles.Count > 0)
+                    {
+                        currentBottle = bottles.Peek();
+                        continue;
+                    }
+                    break;
                 }
             }
 
             //Print result
-            if (bottles.Count != 0)
+            if (bottles.Count == 0)
             {
-                Console.Write($"Bottles: ");
-                Console.Write(String.Join(" ", bottles));
-                Console.WriteLine();
-                Console.WriteLine($"Wasted litters of water: {remainLitters}");
+                Console.WriteLine($"Cups: {string.Join(' ', cups)}");
             }
             else 
             {
-                Console.Write($"Cups: ");
-                Console.Write(String.Join(" ", cups));
-                Console.WriteLine();
-                Console.WriteLine($"Wasted litters of water: {remainLitters}");
+                Console.WriteLine($"Cups: {string.Join(' ', bottles)}");
             }
+            Console.WriteLine($"Wasted litters of water: {remainLitters}");
         }
     }
 }
