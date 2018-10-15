@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace _02.Problem2
+namespace _02.Targam
 {
-    class Problem2
+    class Targam
     {
         static void Main()
         {
