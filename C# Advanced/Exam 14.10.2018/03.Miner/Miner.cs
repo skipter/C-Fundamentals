@@ -6,6 +6,10 @@ namespace _03.Miner
     {
         static void Main()
         {
+            int dimensions = int.Parse(Console.ReadLine());
+
+            int[][] field = new int[dimensions][];
+
             
         }
     }
