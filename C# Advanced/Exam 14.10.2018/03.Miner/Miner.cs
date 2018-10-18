@@ -10,7 +10,7 @@ namespace _03.Miner
 
             int[][] field = new int[dimensions][];
 
-            
+            int coalCount = 0;
         }
     }
 }
