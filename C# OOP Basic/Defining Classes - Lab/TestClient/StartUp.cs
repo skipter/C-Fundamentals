@@ -43,17 +43,54 @@ namespace TestClient
 
         private static void Print(string[] cmdArgs, Dictionary<int, BankAccount> data)
         {
-            
+            int id = int.Parse(cmdArgs[1]);
+
+            if (data.ContainsKey(id))
+            {
+                Console.WriteLine($"Account ID{id}, balance {data[id].Balance:F2}");
+            }
+            else
+            {
+                Console.WriteLine("Account does not exist");
+            }
         }
 
         private static void Withdraw(string[] cmdArgs, Dictionary<int, BankAccount> data)
         {
-            
+            int id = int.Parse(cmdArgs[1]);
+            decimal money = decimal.Parse(cmdArgs[2]);
+
+            if (data.ContainsKey(id))
+            {
+                if (data[id].Balance >= money)
+                {
+                    data[id].Withdraw(money);
+                }
+                else
+                {
+                    Console.WriteLine("Insufficient balance");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Account does not exist");
+            }
         }
 
         private static void Deposit(string[] cmdArgs, Dictionary<int, BankAccount> data)
         {
-           
+            int id = int.Parse(cmdArgs[1]);
+            decimal money = decimal.Parse(cmdArgs[2]);
+
+            if (data.ContainsKey(id))
+            {
+                data[id].Deposit(money);
+            } 
+            else
+            {
+                Console.WriteLine("Account does not exist");
+            }
+
         }
 
         private static void Create (string[] cmdArgs, Dictionary<int, BankAccount> account)
