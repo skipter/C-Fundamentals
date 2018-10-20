@@ -42,13 +42,13 @@ namespace _03.OldestFamilyMember
         }
 
         public Person(int age)
-            : this()            // :this() -> chaining constructors
+            : this()            // :this() -> chaining constructors this() its empty because constructor Person is empty.
         {
             this.Age = age;
         }
 
         public Person(string name, int age)
-            : this(age)
+            : this(age)                  //Call upper constructor with param -> int age
         {
             this.Name = name;
         }
