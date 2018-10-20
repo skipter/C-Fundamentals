@@ -19,11 +19,11 @@ namespace _08.RawData
         {
             get
             {
-                return this.age;
+                return age;
             }
             set
             {
-                this.age = value;
+                age = value;
             }
         }
 
@@ -31,11 +31,11 @@ namespace _08.RawData
         {
             get
             {
-                return this.pressure;
+                return pressure;
             }
             set
             {
-                this.pressure = value;
+                pressure = value;
             }
         }
     }
