@@ -6,10 +6,10 @@
         private string date;
         
 
-        public Family()
+        public Family(string name, string date)
         {
-            this.Name = "";
-            this.Date = "";
+            this.Name = name;
+            this.Date = date;
         }
 
         public string Name
@@ -34,6 +34,11 @@
             {
                 this.date = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Name} {this.Date}";
         }
     }
 }

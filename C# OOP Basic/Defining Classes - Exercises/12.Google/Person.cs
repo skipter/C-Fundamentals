@@ -99,14 +99,14 @@ namespace _12.Google
             StringBuilder str = new StringBuilder();
 
             str.AppendLine($"{this.Name}");
-            str.AppendLine($"Company:");
+            str.AppendLine("Company:");
 
             if (this.Company != null)
             {
                 str.AppendLine(Company.ToString());
             }
 
-            str.AppendLine($"Car:");
+            str.AppendLine("Car:");
 
             if (this.Car != null)
             {
@@ -122,7 +122,7 @@ namespace _12.Google
             str.AppendLine("Children:");
             this.Children.ForEach(x => str.AppendLine(x.ToString()));
 
-            return str.ToString();
+            return str.ToString().Trim();
         }
     }
 }

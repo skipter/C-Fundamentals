@@ -6,11 +6,11 @@
         private string department;
         private decimal salary;
 
-        public Company()
+        public Company(string companyName, string department, decimal salary)
         {
-            this.CompanyName = "";
-            this.Department = "";
-            this.Salary = 0M;
+            this.CompanyName = companyName;
+            this.Department = department;
+            this.Salary = salary;
         }
 
         public string CompanyName
@@ -47,6 +47,10 @@
             {
                 this.salary = value;
             }
+        }
+        public override string ToString()
+        {
+            return $"{this.CompanyName} {this.Department} {this.Salary:f2}";
         }
     }
 }

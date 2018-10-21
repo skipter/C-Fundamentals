@@ -6,10 +6,10 @@
         private string name;
         private string type;
 
-        public Pokemon()
+        public Pokemon(string name, string type)
         {
-            this.Name = "";
-            this.Type = "";
+            this.Name = name;
+            this.Type = type;
         }
 
         public string Name
@@ -34,6 +34,10 @@
             {
                 this.type = value;
             }
+        }
+        public override string ToString()
+        {
+            return $"{this.Name} {this.Type}";
         }
     }
 }

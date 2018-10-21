@@ -3,12 +3,12 @@
     public class Car
     {
         private string carModel;
-        private string speed;
+        private int speed;
 
-        public Car()
+        public Car(string carModel, int speed)
         {
-            this.CarModel = "";
-            this.Speed = "";
+            this.CarModel = carModel;
+            this.Speed = speed;
         }
 
         public string CarModel
@@ -23,7 +23,7 @@
             }
         }
 
-        public string Speed
+        public int Speed
         {
             get
             {
@@ -33,6 +33,11 @@
             {
                 this.speed = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{this.CarModel} {this.Speed}";
         }
     }
 }
