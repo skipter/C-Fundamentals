@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.RectangleInsection", "09
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13.FamilyTree", "13.FamilyTree\13.FamilyTree.csproj", "{F16F1C7D-7E21-4684-97C7-FAA0EC59C23B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.CarSalesman", "10.CarSalesman\10.CarSalesman.csproj", "{4CC46483-957F-4A41-824E-2BBA91A5F238}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.PokemonTrainer", "11.PokemonTrainer\11.PokemonTrainer.csproj", "{D42781B1-2429-461B-998D-C1D0598EF960}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{F16F1C7D-7E21-4684-97C7-FAA0EC59C23B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F16F1C7D-7E21-4684-97C7-FAA0EC59C23B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F16F1C7D-7E21-4684-97C7-FAA0EC59C23B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC46483-957F-4A41-824E-2BBA91A5F238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC46483-957F-4A41-824E-2BBA91A5F238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC46483-957F-4A41-824E-2BBA91A5F238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC46483-957F-4A41-824E-2BBA91A5F238}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42781B1-2429-461B-998D-C1D0598EF960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42781B1-2429-461B-998D-C1D0598EF960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42781B1-2429-461B-998D-C1D0598EF960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42781B1-2429-461B-998D-C1D0598EF960}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
