@@ -8,72 +8,97 @@ namespace P04_Hospital
     {
         public static void Main()
         {
-            Dictionary<string, List<string>> doktori = new Dictionary<string, List<string>>();
-            Dictionary<string, List<List<string>>> departments = new Dictionary<string, List<List<string>>>();
+            var departments = new Dictionary<string, List<string>>();
+            var doctors = new Dictionary<string, List<string>>();
+
+            var inputLine = Console.ReadLine();
 
 
-            string command = Console.ReadLine();
-            while (command != "Output")
+            while (inputLine != "Output")
             {
-                string[] jetoni = command.Split();
-                var departament = jetoni[0];
-                var purvoIme = jetoni[1];
-                var vtoroIme = jetoni[2];
-                var pacient = jetoni[3];
-                var cqloIme = purvoIme + vtoroIme;
+                var inputTokens = inputLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-                if (!doktori.ContainsKey(purvoIme + vtoroIme))
+                if (inputTokens.Length == 4)
                 {
-                    doktori[cqloIme] = new List<string>();
-                }
-                if (!departments.ContainsKey(departament))
-                {
-                    departments[departament] = new List<List<string>>();
-                    for (int stai = 0; stai < 20; stai++)
-                    {
-                        departments[departament].Add(new List<string>());
-                    }
+                    DistributePatientsByDepartmentsAndDoctors(departments, doctors, inputTokens);
                 }
 
-                bool imaMqsto = departments[departament].SelectMany(x => x).Count() < 60;
-                if (imaMqsto)
-                {
-                    int staq = 0;
-                    doktori[cqloIme].Add(pacient);
-                    for (int st = 0; st < departments[departament].Count; st++)
-                    {
-                        if (departments[departament][st].Count < 3)
-                        {
-                            staq = st;
-                            break;
-                        }
-                    }
-                    departments[departament][staq].Add(pacient);
-                }
-
-                command = Console.ReadLine();
+                inputLine = Console.ReadLine();
             }
 
-            command = Console.ReadLine();
+            inputLine = Console.ReadLine();
 
-            while (command != "End")
+            while (inputLine != "End")
             {
-                string[] args = command.Split();
+                var tokensToOutput = inputLine.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-                if (args.Length == 1)
+                if (tokensToOutput.Length == 1)
                 {
-                    Console.WriteLine(string.Join("\n", departments[args[0]].Where(x => x.Count > 0).SelectMany(x => x)));
-                }
-                else if (args.Length == 2 && int.TryParse(args[1], out int staq))
-                {
-                    Console.WriteLine(string.Join("\n", departments[args[0]][staq - 1].OrderBy(x => x)));
+                    PrintAllPatientsInDepartment(departments, inputLine);
                 }
                 else
                 {
-                    Console.WriteLine(string.Join("\n", doktori[args[0] + args[1]].OrderBy(x => x)));
+                    if (doctors.ContainsKey(inputLine.Trim()))
+                    {
+                        PrintAllPatientsHealedByGivenDoctor(doctors, inputLine);
+                    }
+                    else
+                    {
+                        PrintAllPatientsInTheGivenDepartmentRoomAlphabetically(departments, tokensToOutput);
+                    }
                 }
-                command = Console.ReadLine();
+
+                inputLine = Console.ReadLine();
             }
+        }
+
+        private static void DistributePatientsByDepartmentsAndDoctors(Dictionary<string, List<string>> departments, Dictionary<string, List<string>> doctors, string[] inputTokens)
+        {
+            var departmentName = inputTokens[0];
+            var doctorsFirstName = inputTokens[1];
+            var doctorsLastName = inputTokens[2];
+            var docFullName = $"{doctorsFirstName} {doctorsLastName}";
+            var patient = inputTokens[3];
+
+            if (!departments.ContainsKey(departmentName))
+            {
+                departments[departmentName] = new List<string>();
+            }
+            if (doctorsFirstName.Length <= 20 && doctorsLastName.Length <= 20 && !doctors.ContainsKey(docFullName))
+            {
+                doctors[docFullName] = new List<string>();
+            }
+
+            if (departments[departmentName].Count < 60)
+            {
+                departments[departmentName].Add(patient);
+            }
+
+            doctors[docFullName].Add(patient);
+        }
+
+        private static void PrintAllPatientsInTheGivenDepartmentRoomAlphabetically(Dictionary<string, List<string>> departments, string[] tokensToOutput)
+        {
+            string department = tokensToOutput[0];
+            int room = int.Parse(tokensToOutput[1]);
+
+            if (room <= 20 && departments[department].Count > (room * 3) - 2)
+            {
+                var patientsInRoom = departments[department].Skip(room * 3 - 3).Take(3).OrderBy(x => x);
+                Console.WriteLine(string.Join(Environment.NewLine, patientsInRoom));
+            }
+        }
+
+        private static void PrintAllPatientsHealedByGivenDoctor(Dictionary<string, List<string>> doctors, string inputLine)
+        {
+            var doc = inputLine.Trim();
+            var patients = doctors[doc].OrderBy(x => x);
+            Console.WriteLine(string.Join(Environment.NewLine, patients));
+        }
+
+        private static void PrintAllPatientsInDepartment(Dictionary<string, List<string>> departments, string inputLine)
+        {
+            Console.WriteLine(string.Join(Environment.NewLine, departments[inputLine]));
         }
     }
 }

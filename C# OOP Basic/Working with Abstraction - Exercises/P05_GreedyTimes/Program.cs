@@ -9,51 +9,51 @@ namespace P05_GreedyTimes
     {
         static void Main(string[] args)
         {
-            long vhod = long.Parse(Console.ReadLine());
-            string[] seif = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            long bagCapacity = long.Parse(Console.ReadLine());
+            string[] inputArgs = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            var torba = new Dictionary<string, Dictionary<string, long>>();
-            long zlato = 0;
-            long kamuni = 0;
-            long mangizi = 0;
+            var bag = new Dictionary<string, Dictionary<string, long>>();
+            long gold = 0;
+            long stones = 0;
+            long money = 0;
 
-            for (int i = 0; i < seif.Length; i += 2)
+            for (int i = 0; i < inputArgs.Length; i += 2)
             {
-                string name = seif[i];
-                long broika = long.Parse(seif[i + 1]);
+                string item = inputArgs[i];
+                long quantity = long.Parse(inputArgs[i + 1]);
 
-                string kvoE = string.Empty;
+                string currentItem = string.Empty;
 
-                if (name.Length == 3)
+                if (item.Length == 3)
                 {
-                    kvoE = "Cash";
+                    currentItem = "Cash";
                 }
-                else if (name.ToLower().EndsWith("gem"))
+                else if (item.ToLower().EndsWith("gem"))
                 {
-                    kvoE = "Gem";
+                    currentItem = "Gem";
                 }
-                else if (name.ToLower() == "gold")
+                else if (item.ToLower() == "gold")
                 {
-                    kvoE = "Gold";
+                    currentItem = "Gold";
                 }
 
-                if (kvoE == "")
+                if (currentItem == "")
                 {
                     continue;
                 }
-                else if (vhod < torba.Values.Select(x => x.Values.Sum()).Sum() + broika)
+                else if (bagCapacity < bag.Values.Select(x => x.Values.Sum()).Sum() + quantity)
                 {
                     continue;
                 }
 
-                switch (kvoE)
+                switch (currentItem)
                 {
                     case "Gem":
-                        if (!torba.ContainsKey(kvoE))
+                        if (!bag.ContainsKey(currentItem))
                         {
-                            if (torba.ContainsKey("Gold"))
+                            if (bag.ContainsKey("Gold"))
                             {
-                                if (broika > torba["Gold"].Values.Sum())
+                                if (quantity > bag["Gold"].Values.Sum())
                                 {
                                     continue;
                                 }
@@ -63,17 +63,17 @@ namespace P05_GreedyTimes
                                 continue;
                             }
                         }
-                        else if (torba[kvoE].Values.Sum() + broika > torba["Gold"].Values.Sum())
+                        else if (bag[currentItem].Values.Sum() + quantity > bag["Gold"].Values.Sum())
                         {
                             continue;
                         }
                         break;
                     case "Cash":
-                        if (!torba.ContainsKey(kvoE))
+                        if (!bag.ContainsKey(currentItem))
                         {
-                            if (torba.ContainsKey("Gem"))
+                            if (bag.ContainsKey("Gem"))
                             {
-                                if (broika > torba["Gem"].Values.Sum())
+                                if (quantity > bag["Gem"].Values.Sum())
                                 {
                                     continue;
                                 }
@@ -83,39 +83,39 @@ namespace P05_GreedyTimes
                                 continue;
                             }
                         }
-                        else if (torba[kvoE].Values.Sum() + broika > torba["Gem"].Values.Sum())
+                        else if (bag[currentItem].Values.Sum() + quantity > bag["Gem"].Values.Sum())
                         {
                             continue;
                         }
                         break;
                 }
 
-                if (!torba.ContainsKey(kvoE))
+                if (!bag.ContainsKey(currentItem))
                 {
-                    torba[kvoE] = new Dictionary<string, long>();
+                    bag[currentItem] = new Dictionary<string, long>();
                 }
 
-                if (!torba[kvoE].ContainsKey(name))
+                if (!bag[currentItem].ContainsKey(item))
                 {
-                    torba[kvoE][name] = 0;
+                    bag[currentItem][item] = 0;
                 }
 
-                torba[kvoE][name] += broika;
-                if (kvoE == "Gold")
+                bag[currentItem][item] += quantity;
+                if (currentItem == "Gold")
                 {
-                    zlato += broika;
+                    gold += quantity;
                 }
-                else if (kvoE == "Gem")
+                else if (currentItem == "Gem")
                 {
-                    kamuni += broika;
+                    stones += quantity;
                 }
-                else if (kvoE == "Cash")
+                else if (currentItem == "Cash")
                 {
-                    mangizi += broika;
+                    money += quantity;
                 }
             }
 
-            foreach (var x in torba)
+            foreach (var x in bag)
             {
                 Console.WriteLine($"<{x.Key}> ${x.Value.Values.Sum()}");
                 foreach (var item2 in x.Value.OrderByDescending(y => y.Key).ThenBy(y => y.Value))
