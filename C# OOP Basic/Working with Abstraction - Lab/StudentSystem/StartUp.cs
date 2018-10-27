@@ -1,14 +1,15 @@
-﻿namespace P03_StudentSystem
+﻿using System;
+
+public class Program
 {
-    class StartUp
+    public static void Main()
     {
-        static void Main()
+        string command;
+        StudentSystem studentSystem = new StudentSystem();
+
+        while ((command = Console.ReadLine()) != "Exit")
         {
-            StudentSystem studentSystem = new StudentSystem();
-            while (true)
-            {
-                studentSystem.ParseCommand();
-            }
+            studentSystem.ParseCommand(command, Console.WriteLine);
         }
     }
 }
