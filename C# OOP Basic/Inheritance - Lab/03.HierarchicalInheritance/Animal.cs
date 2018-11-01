@@ -2,7 +2,7 @@
 
 namespace Farm
 {
-    class Animal
+    public class Animal
     {
         public void Eat()
         {

@@ -2,7 +2,7 @@
 
 namespace Farm
 {
-    class Cat : Animal
+    public class Cat : Animal
     {
         public void Meow()
         {
