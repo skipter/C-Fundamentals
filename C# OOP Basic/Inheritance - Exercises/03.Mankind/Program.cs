@@ -9,7 +9,7 @@ namespace _03.Mankind
             try
             {
                 string studentInput = Console.ReadLine();
-                string[] studentInfo = studentInput.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                string[] studentInfo = studentInput.Split();
 
                 string firstName = studentInfo[0];
                 string lastName = studentInfo[1];
@@ -18,15 +18,18 @@ namespace _03.Mankind
                 Student student = new Student(firstName, lastName, facNumber);
 
                 string workerInput = Console.ReadLine();
-                string[] workerInfo = workerInput.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                string[] workerInfo = workerInput.Split();
 
                 string frstName = workerInfo[0];
                 string lstName = workerInfo[1];
                 decimal salary = decimal.Parse(workerInfo[2]);
-                int hours = int.Parse(workerInfo[3]);
+                decimal hours = decimal.Parse(workerInfo[3]);
 
                 Worker worker = new Worker(frstName, lstName, salary, hours);
 
+                Console.WriteLine(student);
+                Console.WriteLine();
+                Console.WriteLine(worker);
             }
             catch (ArgumentException ex)
             {

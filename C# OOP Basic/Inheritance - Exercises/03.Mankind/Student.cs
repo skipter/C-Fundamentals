@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace _03.Mankind
 {
-    class Student : Human
+    public class Student : Human
     {
         private string facNumber;
 
-        public Student(string firstName, string lastName, string facNumber) : base (firstName, lastName)
+        public Student(string firstName, string lastName, string facNumber) : base(firstName, lastName)
         {
             this.FacNumber = facNumber;
         }
@@ -22,12 +23,19 @@ namespace _03.Mankind
 
             set
             {
-                if (value.Length < 5 && value.Length > 10)
+                if (value.Length < 5 || value.Length > 10 || (value.Any(ch => !Char.IsLetterOrDigit(ch))))
                 {
                     throw new ArgumentException("Invalid faculty number!");
                 }
                 this.facNumber = value;
             }
+        }
+
+        public override string ToString()
+        {
+            return $@"First Name: {this.FirstName} 
+Last Name: {this.LastName} 
+Faculty number: {this.FacNumber}";
         }
     }
 }
