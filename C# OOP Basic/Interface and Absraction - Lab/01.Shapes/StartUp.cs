@@ -2,11 +2,17 @@
 
 namespace Shapes
 {
-    class StartUp
+    public class StartUp
     {
-        static void Main()
+        public static void Main()
         {
-            Console.WriteLine("Hello World!");
+            int radius = int.Parse(Console.ReadLine());
+            int width = int.Parse(Console.ReadLine());
+            int height = int.Parse(Console.ReadLine());
+
+            //To import interface must namespace be with samename.
+            IDrawable shape = new Rectangle(width, height);
+            shape.Draw();
         }
     }
 }
