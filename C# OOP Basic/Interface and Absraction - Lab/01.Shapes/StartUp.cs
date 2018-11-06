@@ -11,6 +11,8 @@ namespace Shapes
             int height = int.Parse(Console.ReadLine());
 
             //To import interface must namespace be with samename.
+            IDrawable circle = new Circle(radius);
+            circle.Draw();
             IDrawable shape = new Rectangle(width, height);
             shape.Draw();
         }
