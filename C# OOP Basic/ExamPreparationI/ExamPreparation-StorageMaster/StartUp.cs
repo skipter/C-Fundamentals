@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExamPreparation_StorageMaster
+namespace StorageMaster
 {
     public class StartUp
     {
