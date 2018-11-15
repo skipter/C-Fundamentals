@@ -10,30 +10,70 @@ namespace _01.Vehicles.Models
         //fields - come from IVehicle - there are fields and methods, they are public because its Interface
         private double fuelQuantity;
         private double fuelConsumption;
+        private double tankCapacity;
         //Constructor
-        public Vehicles(double fuelQuantity, double fuelConsumption)
+        public Vehicles(double fuelQuantity, double fuelConsumption, double tankCapacity)
         {
+            this.TankCapacity = tankCapacity;
             this.FuelQuantity = fuelQuantity;
             this.FuelConsumption = fuelConsumption;
         }
 
+        public bool IsVehicleEmpty { get; set; }
+
+        public double TankCapacity
+        {
+            get
+            {
+                return tankCapacity;
+            }
+            set
+            {
+                tankCapacity = value;
+            }
+        }
+
         public double FuelQuantity
         {
-            get { return fuelQuantity; }
-            set { fuelQuantity = value; }
+            get
+            {
+                return fuelQuantity;
+            }
+            set
+            {
+                if (value > this.TankCapacity)
+                {
+                    value = 0;
+                }
+
+                fuelQuantity = value;
+            }
         }
 
         public double FuelConsumption
         {
-            get { return fuelConsumption; }
-            set { fuelConsumption = value; }
+            get
+            {
+                return fuelConsumption;
+            }
+            set
+            {
+                fuelConsumption = value;
+            }
         }
 
         //Methods
-        public void Drive(double distance)
+        public virtual void Drive(double distance)
         {
+            double currentFuelConsumption = this.FuelConsumption;
+
             double neededFuel = distance * this.FuelConsumption;
 
+            if (!IsVehicleEmpty)
+            {
+                currentFuelConsumption += 1.4;
+            }
+            
             if (this.FuelQuantity < neededFuel)
             {
                 throw new ArgumentException($"{this.GetType().Name} needs refueling");
@@ -45,11 +85,15 @@ namespace _01.Vehicles.Models
 
         }
 
-        public void Refuel(double fuel)
+        public virtual void Refuel(double fuel) 
         {
-            if (this is Truck)
+            if (fuel <= 0)
             {
-                fuel *= 0.95;
+                throw new ArgumentException("Fuel must be a positive number");
+            }
+            if (this.FuelQuantity + fuel > this.TankCapacity)
+            {
+                throw new ArgumentException($"Cannot fit {fuel} fuel in the tank");
             }
 
             this.FuelQuantity += fuel;

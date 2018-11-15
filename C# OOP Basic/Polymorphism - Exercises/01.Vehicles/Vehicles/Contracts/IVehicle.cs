@@ -10,8 +10,14 @@ namespace _01.Vehicles.Vehicle.Contracts
 
         double FuelConsumption { get; }
 
+        double TankCapacity { get; }
+
+        bool IsVehicleEmpty { get; set; }
+
         void Drive(double distance);
 
         void Refuel(double fuel);
+
+
     }
 }

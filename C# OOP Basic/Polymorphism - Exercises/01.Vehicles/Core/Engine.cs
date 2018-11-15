@@ -11,16 +11,24 @@ namespace _01.Vehicles.Models
         {
             string[] carInfo = Console.ReadLine().Split();
             string[] truckInfo = Console.ReadLine().Split();
+            string[] busInfo = Console.ReadLine().Split();
 
             double carFuelQuantity = double.Parse(carInfo[1]);
             double carFuelConsumption = double.Parse(carInfo[2]);
+            double carTankCapacity = double.Parse(carInfo[3]);
 
             double truckFuelQuantity = double.Parse(truckInfo[1]);
             double truckFuelConsumption = double.Parse(truckInfo[2]);
+            double truckTankCapacity = double.Parse(truckInfo[3]);
+
+            double busFuelQuantity = double.Parse(busInfo[1]);
+            double busFuelConsumption = double.Parse(busInfo[2]);
+            double busTankCapacity = double.Parse(busInfo[3]);
 
             //Problem with Vehicles = namespace _01.Vehicles.Models....
-            IVehicle car = new Car(carFuelQuantity, carFuelConsumption);
-            IVehicle truck = new Truck(truckFuelQuantity, truckFuelConsumption);
+            IVehicle car = new Car(carFuelQuantity, carFuelConsumption, carTankCapacity);
+            IVehicle truck = new Truck(truckFuelQuantity, truckFuelConsumption, truckTankCapacity);
+            IVehicle bus = new Bus(busFuelQuantity, busFuelConsumption, busTankCapacity);
 
             int n = int.Parse(Console.ReadLine());
 
@@ -40,21 +48,35 @@ namespace _01.Vehicles.Models
                         {
                             car.Refuel(value);
                         }
-                        else
+                        else if (vehicleType == "Truck")
                         {
                             truck.Refuel(value);
                         }
+                        else if (vehicleType == "Bus")
+                        {
+                            bus.Refuel(value);
+                        }
                     }
-                    else
+                    else if (action == "Drive")
                     {
                         if (vehicleType == "Car")
                         {
                             car.Drive(value);
                         }
-                        else
+                        else if (vehicleType == "Truck")
                         {
                             truck.Drive(value);
                         }
+                        else if (vehicleType == "Bus")
+                        {
+                            bus.IsVehicleEmpty = false;
+                            bus.Drive(value);
+                        }
+                    }
+                    else if (action == "DriveEmpty")
+                    {
+                        bus.IsVehicleEmpty = true;
+                        bus.Drive(value);
                     }
                 }
                 catch (ArgumentException ex)
@@ -65,6 +87,7 @@ namespace _01.Vehicles.Models
             }
             Console.WriteLine(car);
             Console.WriteLine(truck);
+            Console.WriteLine(bus);
         }
     }
 }

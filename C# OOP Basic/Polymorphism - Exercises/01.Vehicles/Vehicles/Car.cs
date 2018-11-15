@@ -9,8 +9,8 @@ namespace _01.Vehicles.Models
 
         private const double airConditionConsumption = 0.9;
 
-        public Car(double fuelQuantity, double fuelConsumption) 
-            : base(fuelQuantity, fuelConsumption)
+        public Car(double fuelQuantity, double fuelConsumption, double tankCapacity) 
+            : base(fuelQuantity, fuelConsumption, tankCapacity)
         {
             // this.FuelConsumption += 0.9; --> bad practise
             this.FuelConsumption += airConditionConsumption;
