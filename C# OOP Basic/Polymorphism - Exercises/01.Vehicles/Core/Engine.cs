@@ -19,7 +19,7 @@ namespace _01.Vehicles.Models
 
             double truckFuelQuantity = double.Parse(truckInfo[1]);
             double truckFuelConsumption = double.Parse(truckInfo[2]);
-            double truckTankCapacity = double.Parse(truckInfo[3]);
+            double truckTankCapacity = double.Parse(truc[3]);
 
             double busFuelQuantity = double.Parse(busInfo[1]);
             double busFuelConsumption = double.Parse(busInfo[2]);
