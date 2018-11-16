@@ -43,17 +43,65 @@ namespace StorageMaster.Entities.Storage
 
         public Vehicle GetVehicle(int garageSlot)
         {
-            throw new ArgumentException();
+            if (garageSlot >= this.GarageSlots)
+            {
+                throw new InvalidOperationException("Invalid garage slot!");
+            }
+
+            Vehicle vehicle = this.garage[garageSlot];
+
+            if (vehicle == null)
+            {
+                throw new InvalidOperationException("No vehicle in this garage slot!");
+            }
+            
+            return vehicle;
         }
 
         public int SendVehicleTo(int garageSlot, Storage deliveryLocation)
         {
-            throw new ArgumentException();
+            Vehicle vehicle = this.GetVehicle(garageSlot);
+
+            int foundGarageSlotIndex = deliveryLocation.AddVehicleToGarage(vehicle);
+            this.garage[garageSlot] = null;
+
+            return foundGarageSlotIndex;
+
+
         }
 
         public int UnloadVehicle(int garageSlot)
         {
-            throw new ArgumentException();
+            if (this.IsFull)
+            {
+                throw new InvalidOperationException("Storage is full!");
+            }
+
+            Vehicle vehicle = this.GetVehicle(garageSlot);
+
+            int unloadedProductCounter = 0;
+
+            while (!this.IsFull && !vehicle.IsEmpty)
+            {
+                Product product = vehicle.Unload();
+                this.products.Add(product);
+                unloadedProductCounter++;
+            }
+            return unloadedProductCounter;
+        }
+
+        private int AddVehicleToGarage(Vehicle vehicle)
+        {
+            int freeGarageSlotIndex = Array.IndexOf(this.garage, null);
+
+            if (freeGarageSlotIndex == -1)
+            {
+                throw new InvalidOperationException("No room in range");
+            }
+
+            this.garage[freeGarageSlotIndex] = vehicle;
+
+            return freeGarageSlotIndex;
         }
 
         private void FillGarageWithInitialVehicles(IEnumerable<Vehicle> vehicles)
