@@ -5,6 +5,8 @@ using DungeonsAndCodeWizards.Entity.Character;
 
 namespace DungeonsAndCodeWizards.Entity.Item
 {
+    using Entity.Character;
+
     public class PoisonPotion : Item
     {
         private const int PoisonPotionWeight = 5;
@@ -14,9 +16,14 @@ namespace DungeonsAndCodeWizards.Entity.Item
         {
         }
 
-        public override void AffectCharacter(Character.Character character)
+        public override void AffectCharacter(Character character)
         {
-            base.AffectCharacter(character);
+            if (!character.IsAlive)
+            {
+                throw new InvalidOperationException("Must be alive to perform this action!");
+            }
+
+            character.Health -= 20;
         }
     }
 }

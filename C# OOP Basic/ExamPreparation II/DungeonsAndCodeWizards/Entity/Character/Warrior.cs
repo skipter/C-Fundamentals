@@ -21,7 +21,20 @@ namespace DungeonsAndCodeWizards.Entity.Character.Contracts
 
         public void Attack(Character character)
         {
+            this.CheckAlive();
+            character.CheckAlive();
 
+            if (this == character)
+            {
+                throw new InvalidOperationException("Cannot attack self!");
+            }
+
+            if (this.Faction == character.Faction)
+            {
+                throw new InvalidOperationException($"Friendly fire! Both characters are from {this.Faction} faction!");
+            }
+
+            character.Health-= AbilityPoints;
         }
     }
 }

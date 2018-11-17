@@ -17,7 +17,7 @@ namespace DungeonsAndCodeWizards.Entity.Character
         private double armor;
         private double abilityPoints;
         private Bag bag;
-        private string faction;
+        private Faction faction;
         private bool isAlive = true;
         private double restHealMultiplier;
 
@@ -28,7 +28,7 @@ namespace DungeonsAndCodeWizards.Entity.Character
             this.Armor = armor;
             this.AbilityPoints = abilityPoints;
             this.Bag = bag;
-            
+            this.Faction = faction;
         }
 
         public string Name
@@ -45,43 +45,94 @@ namespace DungeonsAndCodeWizards.Entity.Character
             }
         }
         public double BaseHealth { get => baseHealth; private set => baseHealth = value; }
-        public double Health { get => health; private set => health = value; }
-        public double BaseArmor { get => baseArmor; private set => baseArmor = value; }
+        public double Health { get => health; set => health = value; }
+        public double BaseArmor { get => baseArmor; set => baseArmor = value; }
         public double Armor { get => armor; private set => armor = value; }
         public double AbilityPoints { get => abilityPoints; private set => abilityPoints = value; }
-        public string Faction { get => faction; private set => faction = value; }
-        public bool IsAlive { get => isAlive; private set => isAlive = value; }
-        public double RestHealMultiplier { get => restHealMultiplier; private set => restHealMultiplier = value; }
+        public virtual double RestHealMultiplier { get => 0.2; }
         public Bag Bag { get => bag; private set => bag = value; }
+        public Faction Faction { get => faction; private set => faction = value; }
+
+        public bool IsAlive
+        {
+            get => isAlive;
+            private set
+            {
+                if (this.baseHealth <= 0)
+                {
+                    isAlive = false;
+                }
+                isAlive = value;
+            }
+        }
 
         public void TakeDamage(double hitPoints)
         {
+            this.CheckAlive();
 
+            if (this.Armor < hitPoints)
+            {
+                armor -= hitPoints;
+                armor = 0;
+                health -= hitPoints;
+
+                if (health <= 0)
+                {
+                    this.IsAlive = false;
+                    this.health = 0;
+                }
+            }
+
+            this.Armor -= hitPoints;
+            
         }
 
         public void Rest()
         {
+            this.CheckAlive();
 
+            this.Health += this.Health * (this.BaseHealth * RestHealMultiplier);
         }
 
         public void UseItem(Item item)
         {
-
+            this.CheckAlive();
+            item.AffectCharacter(this);
         }
 
         public void UseItemOn(Item item, Character character)
         {
+            this.CheckAlive();
+            character.CheckAlive();
 
+            item.AffectCharacter(character);
         }
 
         public void GiveCharacterItem(Item item, Character character)
         {
+            this.CheckAlive();
+            character.CheckAlive();
 
+            character.ReceiveItem(item);
         }
 
         public void ReceiveItem(Item item)
         {
+            this.CheckAlive();
+            this.bag.AddItem(item);
+        }
 
+        internal void CheckAlive()
+        {
+            if (!this.IsAlive)
+            {
+                throw new InvalidOperationException("Must be alive to perform this action!");
+            }
+        }
+
+        internal void IncreaseHealth(double points)
+        {
+            this.Health = Math.Min(BaseHealth, Health + points);
         }
     }
 }

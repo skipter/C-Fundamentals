@@ -19,7 +19,10 @@ namespace DungeonsAndCodeWizards.Entity.Item
 
         public virtual void AffectCharacter(Character character)
         {
-
+            if (!character.IsAlive) 
+            {
+                throw new InvalidOperationException("Must be alive to perform this action!");
+            }
         }
     }
 }

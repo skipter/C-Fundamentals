@@ -24,12 +24,30 @@ namespace DungeonsAndCodeWizards.Entity.Bag
 
         public void AddItem(Item item)
         {
+            if (this.items.Sum(x => x.Weight) + item.Weight > this.Capacity)
+            {
+                throw new InvalidOperationException("Bag is full!");
+            }
 
+            items.Add(item);
         }
 
         public Item GetItem(string name)
         {
-            return null;
+            if (items.Count == 0)
+            {
+                throw new InvalidOperationException("Bag is empty!");
+            }
+
+            var item = this.Items.FirstOrDefault(i => i.GetType().Name == name);
+
+            if (item == null)
+            {
+                throw new InvalidOperationException($"No item with name {name} in bag!");
+            }
+
+            items.Remove(item);
+            return item;
         }
     }
 }

@@ -20,9 +20,19 @@ namespace DungeonsAndCodeWizards.Entity.Character
         {
         }
 
+        public override double RestHealMultiplier => 0.5;
+
         public void Heal(Character character)
         {
+            this.CheckAlive();
+            character.CheckAlive();
 
+            if (this.Faction != character.Faction)
+            {
+                throw new InvalidOperationException("Cannot heal enemy character!");
+            }
+
+            character.IncreaseHealth(AbilityPoints);
         }
     }
 }
