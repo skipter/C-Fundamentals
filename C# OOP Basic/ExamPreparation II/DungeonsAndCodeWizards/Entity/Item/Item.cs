@@ -4,6 +4,8 @@ using System.Text;
 
 namespace DungeonsAndCodeWizards.Entity.Item
 {
+    using Character;
+
     public abstract class Item
     {
         private int weight;
@@ -15,7 +17,7 @@ namespace DungeonsAndCodeWizards.Entity.Item
 
         public int Weight { get => weight; private set => weight = value; }
 
-        public void AffectCharacter(Character character)
+        public virtual void AffectCharacter(Character character)
         {
 
         }

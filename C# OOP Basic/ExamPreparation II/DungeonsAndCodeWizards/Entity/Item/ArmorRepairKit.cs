@@ -5,12 +5,12 @@ using DungeonsAndCodeWizards.Entity.Character;
 
 namespace DungeonsAndCodeWizards.Entity.Item
 {
-    public class HealthPotion : Item
+    public class ArmorRepairKit : Item
     {
-        private const int HealthPotionWeight = 5;
+        private const int ArmorRepairKitWeight = 10;
 
-        public HealthPotion() 
-            : base(HealthPotionWeight)
+        public ArmorRepairKit() 
+            : base(ArmorRepairKitWeight)
         {
         }
 
