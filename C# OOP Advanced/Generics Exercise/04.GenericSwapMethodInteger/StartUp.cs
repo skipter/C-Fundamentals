@@ -1,20 +1,20 @@
-﻿namespace _03.GenericSwapMethodString
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
+namespace _04.GenericSwapMethodInteger
+{
     public class StartUp
     {
         public static void Main()
         {
             int n = int.Parse(Console.ReadLine());
 
-            List<string> messages = new List<string>(); 
+            List<int> messages = new List<int>();
 
             for (int i = 0; i < n; i++)
             {
-                string message = Console.ReadLine();
+                int message = int.Parse(Console.ReadLine());
                 messages.Add(message);
             }
 
@@ -23,7 +23,7 @@
                 .Select(int.Parse)
                 .ToArray();
 
-            Box<string> box = new Box<string>(messages);
+            Box<int> box = new Box<int>(messages);
             box.Swap(indexes[0], indexes[1]);
 
             Console.WriteLine(box);
