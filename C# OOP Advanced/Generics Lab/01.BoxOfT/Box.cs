@@ -1,12 +1,31 @@
 ﻿namespace BoxOfT
 {
-    public class Box
+    using System.Collections.Generic;
+
+    public class Box<T>
     {
-        private string element;
+        private readonly List<T> data;
 
-       // public void Add(string element);
+        public Box()
+        {
+            this.data = new List<T>();
+        }
 
-        int Count { get; }
+        public IReadOnlyCollection<T> Data => this.data.AsReadOnly();
 
+        public int Count => this.data.Count;
+
+        public void Add(T element)
+        {
+            this.data.Add(element);
+        }
+
+        public T Remove()
+        {
+            T element = this.data[Count - 1];
+            this.data.RemoveAt(this.data.Count - 1);
+
+            return element;
+        }
     }
 }
