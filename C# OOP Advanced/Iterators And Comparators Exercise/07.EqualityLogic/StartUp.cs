@@ -1,11 +1,12 @@
-﻿namespace _03.Stack
+﻿using System;
+
+namespace _07.EqualityLogic
 {
     public class StartUp
     {
         public static void Main()
         {
-            Engine engine = new Engine();
-            engine.Run();
+            
         }
     }
 }

@@ -55,9 +55,6 @@ namespace _01.ListyIterator
                 case "END":
                     isRun = false;
                     break;
-                default:
-                    throw new InvalidOperationException();
-                    break;
             }
         }
     }
