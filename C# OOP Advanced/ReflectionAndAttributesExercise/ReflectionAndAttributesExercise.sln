@@ -5,9 +5,15 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.HarvestingFields", "01.HarvestingFields\01.HarvestingFields.csproj", "{397F8F18-807D-4C03-9C55-875E5C2C28A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.BlackBoxInteger", "02.BlackBoxInteger\02.BlackBoxInteger.csproj", "{BC058DEB-7013-4C78-8765-3825F95551CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.BlackBoxInteger", "02.BlackBoxInteger\02.BlackBoxInteger.csproj", "{BC058DEB-7013-4C78-8765-3825F95551CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P03_BarraksWars", "P03_BarraksWars\P03_BarraksWars.csproj", "{756A35FE-9842-455F-BADE-EFCEB4795A95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P03_BarraksWars", "P03_BarraksWars\P03_BarraksWars.csproj", "{756A35FE-9842-455F-BADE-EFCEB4795A95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.TrafficLights", "06.TrafficLights\06.TrafficLights.csproj", "{ACA3D74E-DA0E-4338-A0ED-DD6159009972}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.InfernoInfinity", "07.InfernoInfinity\07.InfernoInfinity.csproj", "{9D25162A-5ED5-4927-A64A-4820C94BEDA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.CreateCustomClassAttribute", "08.CreateCustomClassAttribute\08.CreateCustomClassAttribute.csproj", "{249573E1-2B6F-475A-8CBE-8FC16D6AD7E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +33,18 @@ Global
 		{756A35FE-9842-455F-BADE-EFCEB4795A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{756A35FE-9842-455F-BADE-EFCEB4795A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{756A35FE-9842-455F-BADE-EFCEB4795A95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA3D74E-DA0E-4338-A0ED-DD6159009972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA3D74E-DA0E-4338-A0ED-DD6159009972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA3D74E-DA0E-4338-A0ED-DD6159009972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA3D74E-DA0E-4338-A0ED-DD6159009972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D25162A-5ED5-4927-A64A-4820C94BEDA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D25162A-5ED5-4927-A64A-4820C94BEDA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D25162A-5ED5-4927-A64A-4820C94BEDA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D25162A-5ED5-4927-A64A-4820C94BEDA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{249573E1-2B6F-475A-8CBE-8FC16D6AD7E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{249573E1-2B6F-475A-8CBE-8FC16D6AD7E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{249573E1-2B6F-475A-8CBE-8FC16D6AD7E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{249573E1-2B6F-475A-8CBE-8FC16D6AD7E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
