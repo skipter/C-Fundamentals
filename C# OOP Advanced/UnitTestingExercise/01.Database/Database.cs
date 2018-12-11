@@ -5,60 +5,89 @@ namespace _01.Database
 {
     public class Database
     {
+        private Person[] database;
         private const int Capacity = 16;
-        private int[] data;
         private int index;
 
-        public Database()
+        public Database(params Person[] data)
         {
-            this.data = new int[Capacity];
-            //TODO Test index
-            this.index = -1;
-        }
-
-        public Database(int[] values)
-            :this()
-        {
-            if (values.Length > 16)
+            if (data.Length > 16)
             {
-                throw new InvalidOperationException("Parameter is too long!");
+                throw new InvalidOperationException();
             }
 
-            for (int i = 0; i < values.Length; i++)
-            {
-                this.data[i] = values[i];
-            }
+            this.database = new Person[16];
+            this.index = 0;
 
-            this.index = values.Length - 1;
+            foreach (var person in data)
+            {
+                this.Add(person);
+            }
         }
 
-        public void Add(int value)
+        public void Add(Person item)
         {
-            //TODO test if index value is 15
-            if(this.index < Capacity - 1)
+            if (index == 16)
             {
-                this.data[++this.index] = value;
-                return;
+                throw new InvalidOperationException();
             }
 
-            throw new InvalidOperationException("Database is full!");
-        }
-
-        public void Remove()
-        {
-            //Check this case
-            if (this.index == -1)
+            if (this.database.Any(p => p != null && p.Id == item.Id))
             {
-                throw new InvalidOperationException("Database is empty!");
+                throw new InvalidOperationException();
             }
 
-            this.data[this.index] = 0;
-            this.index--;
+            if (this.database.Any(p => p != null && p.Name == item.Name))
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.database[index++] = item;
         }
 
-        public int[] Fetch()
+        public Person Remove()
         {
-            return this.data.Take(this.index + 1).ToArray();
+            if (index == 0)
+            {
+                throw new InvalidOperationException();
+            }
+
+            return this.database[--index];
+        }
+
+        public Person[] Fetch()
+        {
+            return this.database.Take(index).ToArray();
+        }
+
+        public Person FindByUsername(string username)
+        {
+            if (username == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (!this.database.Any(p => p != null && p.Name == username))
+            {
+                throw new InvalidOperationException();
+            }
+
+            return this.database.Single(p => p != null && p.Name == username);
+        }
+
+        public Person FindById(long id)
+        {
+            if (id < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (!this.database.Any(p => p != null && p.Id == id))
+            {
+                throw new InvalidOperationException();
+            }
+
+            return this.database.Single(p => p != null && p.Id == id);
         }
     }
 }

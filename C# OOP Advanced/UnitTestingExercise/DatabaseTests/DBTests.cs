@@ -2,134 +2,156 @@
 {
     using _01.Database;
     using NUnit.Framework;
-    using System;
-    using System.Linq;
-    using System.Reflection;
 
     [TestFixture]
     public class DBTests
     {
+        private Person pesho;
+        private Person gosho;
 
-        private const int ArraySize = 16;
-        private const int InitialArrayInedx = -1;
-
-        [Test]
-        public void EmptyConstructorShoudInitData()
+        [SetUp]
+        public void TestInit()
         {
-            Database db = new Database(); //we call empty constructor
-
-            Type type = typeof(Database);
-
-            var field = (int[])type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
-                .First(f => f.Name == "data")
-                .GetValue(db);
-
-            var lenght = field.Length;
-
-            Assert.That(lenght, Is.EqualTo(ArraySize));
-
+            pesho = new Person(114560, "Pesho");
+            gosho = new Person(447788556699, "Gosho");
         }
 
         [Test]
-        public void EmptyConstructorShoudInitIndexToMinusOne()
+        public void ConstructorShoudInitializeCollection()
         {
-            Database db = new Database(); //we call empty constructor
+            var expected = new Person[] { pesho, gosho };
 
-            Type type = typeof(Database);
+            var db = new Database(expected);
 
-            var indexValue = (int)type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
-                .First(f => f.Name == "index")
-                .GetValue(db);
+            var actual = db.Fetch();
 
-
-            Assert.That(indexValue, Is.EqualTo(InitialArrayInedx), "Internal Array is null.");
-
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
-        public void CtorShouldThrowExeptionInvalidOperationExeptionWithKargerArray()
+        public void AddShouldAddValidPerson()
         {
-            int[] arr = new int[ArraySize + 1];
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+            var newPerson = new Person(554466, "Stamat");
+            db.Add(newPerson);
 
-            Assert.Throws<InvalidOperationException>(() => new Database(arr));
+            var actual = db.Fetch();
+            var expected = new Person[] { pesho, gosho, newPerson };
+
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
-        [TestCase(new int[] { })]
-        [TestCase(new int[] { 13 })]
-        [TestCase(new int[] { 13, 42, 69 })]
-        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 })]
-        public void CtorShouldSetINdexCorrectly(int[] values)
+        public void AddSameUsernameShouldThrow()
         {
-            Database db = new Database(values);
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+            var newPerson = new Person(554466, "Gosho");
 
-            int expectedIndex = values.Length - 1;
-
-            Type type = typeof(Database);
-
-            var indexValue = (int)type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
-                .First(f => f.Name == "index")
-                .GetValue(db);
-
-            Assert.That(indexValue, Is.EqualTo(expectedIndex));
+            Assert.That(() => db.Add(newPerson), Throws.InvalidOperationException);
         }
 
         [Test]
-        [TestCase(new int[] { })]
-        [TestCase(new int[] { 1 })]
-        [TestCase(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 })]
-        public void AddShouldIncreaseCorrectly(int[] values)
+        public void AddSameIdShouldThrow()
         {
-            Database db = new Database(values);
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+            var newPerson = new Person(114560, "Stamat");
 
-            Type type = typeof(Database);
-
-            db.Add(16);
-
-            var index = (int)type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
-                .First(f => f.Name == "index")
-                .GetValue(db);
-
-            int expectedIndex = values.Length;
-
-            Assert.That(index, Is.EqualTo(expectedIndex));
+            Assert.That(() => db.Add(newPerson), Throws.InvalidOperationException);
         }
 
         [Test]
-        public void AddWhenDatabaseIsFullShouldThrowInvalidOperationExeption()
+        public void RemoveShouldRemove()
         {
-            int[] arr = new int[16];
-            Database db = new Database(arr);
-
-            Assert.Throws<InvalidOperationException>(() => db.Add(1));
-        }
-
-        [Test]
-        public void RemoveShouldDecreaseIndex()
-        {
-            int[] arr = new int[10];
-
-            Database db = new Database(arr);
-
-            Type type = typeof(Database);
-
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
             db.Remove();
 
-            var index = (int)type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic)
-                .First(f => f.Name == "index")
-                .GetValue(db);
+            var actual = db.Fetch();
+            var expected = new Person[] { pesho };
 
-            int expectedIndex = arr.Length - 2;
-
-            Assert.That(index, Is.EqualTo(expectedIndex));
+            Assert.That(actual, Is.EqualTo(expected));
         }
 
         [Test]
-        public void RemoveFromEmptyDatabaseShouldThrowInvalidOperationExeption()
+        public void RemoveEmptyCollectionShouldThrow()
         {
-            Database db = new Database();
+            var persons = new Person[] { };
+            var db = new Database(persons);
 
-            Assert.Throws<InvalidOperationException>(() => db.Remove());
+            Assert.That(() => db.Remove(), Throws.InvalidOperationException);
         }
+
+        [Test]
+        public void FindByUsernameExistingPersonShouldReturnPerson()
+        {
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+
+            var expected = pesho;
+            var actual = db.FindByUsername("Pesho");
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void FindByUsernameNonExistingPersonShouldThrow()
+        {
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+
+            Assert.That(() => db.FindByUsername("Stamat"), Throws.InvalidOperationException);
+        }
+
+        [Test]
+        public void FindByUsernameNullArgumentShouldThrow()
+        {
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+
+            Assert.That(() => db.FindByUsername(null), Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void FindByUsernameIsCaseSensitive()
+        {
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+
+            Assert.That(() => db.FindByUsername("GOSHO"), Throws.InvalidOperationException);
+        }
+
+        [Test]
+        public void FindByIdExistingPersonShouldReturnPerson()
+        {
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+
+            var expected = pesho;
+            var actual = db.FindById(114560);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void FindByIdNonExistingPersonShouldThrow()
+        {
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+
+            Assert.That(() => db.FindById(558877), Throws.InvalidOperationException);
+        }
+
+        [Test]
+        public void FindByUsernameNegativeArgumentShouldThrow()
+        {
+            var persons = new Person[] { pesho, gosho };
+            var db = new Database(persons);
+
+            Assert.That(() => db.FindById(-5), Throws.Exception);
+        }
+        
     }
 }
