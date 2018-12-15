@@ -2,7 +2,6 @@
 {
 	using System.Text;
 	using System.Linq;
-
 	using Contracts;
 	using Entities.Contracts;
 

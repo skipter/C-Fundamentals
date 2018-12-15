@@ -1,163 +1,181 @@
 ﻿namespace FestivalManager.Core.Controllers
 {
-	using System;
-	using System.Globalization;
-	using System.Linq;
-	using System.Text;
-	using Contracts;
-	using Entities.Contracts;
+    using System;
+    using System.Linq;
+    using System.Text;
+    using Contracts;
+    using Entities.Contracts;
+    using FestivalManager.Entities;
+    using FestivalManager.Entities.Factories.Contracts;
 
-	public class FestivalController : IFestivalController
-	{
-		private const string TimeFormat = "mm\\:ss";
-		private const string TimeFormatLong = "{0:2D}:{1:2D}";
-		private const string TimeFormatThreeDimensional = "{0:3D}:{1:3D}";
+    public class FestivalController : IFestivalController
+    {
+        private const string TimeFormat = "mm\\:ss";
+        private const string TimeFormatLong = "{0:2D}:{1:2D}";
+        private const string TimeFormatThreeDimensional = "{0:3D}:{1:3D}";
 
-		private readonly IStage stage;
+        private readonly IStage stage;
+        private readonly ISetFactory setFactory;
+        private readonly IInstrumentFactory instrumentFactory;
 
-		public FestivalController(IStage stage)
-		{
-			this.stage = stage;
-		}
+        public FestivalController(IStage stage, ISetFactory setFactory, IInstrumentFactory instrumentFactory)
+        {
+            this.stage = stage;
+            this.setFactory = setFactory; //or new SetFactory();
+            this.instrumentFactory = instrumentFactory;
+        }
 
-		public string Report()
-		{
-			var result = string.Empty;
+        public string ProduceReport()
+        {
+            StringBuilder sb = new StringBuilder(); 
 
-			var totalFestivalLength = new TimeSpan(this.stage.Sets.Sum(s => s.ActualDuration.Ticks));
+            var totalFestivalLength = new TimeSpan(this.stage.Sets.Sum(s => s.ActualDuration.Ticks));
 
-			result += ($"Festival length: {FormatTime(totalFestivalLength)}") + "\n";
+            sb.AppendLine($"Festival length: {totalFestivalLength.ToString(TimeFormat)}");
 
-			foreach (var set in this.stage.Sets)
-			{
-				result += ($"--{set.Name} ({FormatTime(set.ActualDuration)}):") + "\n";
+            foreach (var set in this.stage.Sets)
+            {
+                sb.AppendLine($"--{set.Name} ({totalFestivalLength.ToString(TimeFormat)}):");
 
-				var performersOrderedDescendingByAge = set.Performers.OrderByDescending(p => p.Age);
-				foreach (var performer in performersOrderedDescendingByAge)
-				{
-					var instruments = string.Join(", ", performer.Instruments
-						.OrderByDescending(i => i.Wear));
+                var performersOrderedDescendingByAge = set.Performers.OrderByDescending(p => p.Age);
+                foreach (var performer in performersOrderedDescendingByAge)
+                {
+                    var instruments = string.Join(", ", performer.Instruments
+                        .OrderByDescending(i => i.Wear));
 
-					result += ($"---{performer.Name} ({instruments})") + "\n";
-				}
+                    sb.AppendLine($"---{performer.Name} ({instruments})");
+                }
 
-				if (!set.Songs.Any())
-					result += ("--No songs played") + "\n";
-				else
-				{
-					result += ("--Songs played:") + "\n";
-					foreach (var song in set.Songs)
-					{
-						result += ($"----{song.Name} ({song.Duration.ToString(TimeFormat)})") + "\n";
-					}
-				}
-			}
+                if (!set.Songs.Any())
+                    sb.AppendLine("--No songs played");
+                else
+                {
+                    sb.AppendLine("--Songs played:");
+                    foreach (var song in set.Songs)
+                    {
+                        sb.AppendLine($"----{song.Name} ({song.Duration.ToString(TimeFormat)})");
+                    }
+                }
+            }
 
-			return result.ToString();
-		}
+            return sb.ToString();
+        }
 
-		public string RegisterSet(string[] args)
-		{
-			throw new NotImplementedException(); // оф...
-		}
+        public string RegisterSet(string[] args)
+        {
+            string name = args[0];
+            string setTypeName = args[1];
 
-		public string SignUpPerformer(string[] args)
-		{
-			var name = args[0];
-			var age = int.Prase(args[1]);
+            ISet set = this.setFactory.CreateSet(name, setTypeName);
 
-			var instrumenti = args.Skip(2).ToArray();
+            this.stage.AddSet(set);
 
-			var instrumenti2 = instrumenti
-				.Select(i => this.instrumentFactory.CreateInstrument(i))
-				.ToArray();
+            string result = $"Registered {setTypeName} set";
+            return result;
+        }
 
-			var performer = this.performerFactory.CreatePerformer(name, age);
+        public string SignUpPerformer(string[] args)
+        {
+            var name = args[0];
+            var age = int.Parse(args[1]);
 
-			foreach (var instrument in instrumenti2)
-			{
-				performer.AddInstrument(instrument);
-			}
+            var instrumentNames = args.Skip(2).ToArray();
 
-			this.stage.AddPerformer(performer);
+            var instruments = instrumentNames
+                .Select(i => this.instrumentFactory.CreateInstrument(i))
+                .ToArray();
 
-			return $"Registered performer {performer.Name}";
-		}
+            IPerformer performer = new Performer(name, age);
 
-		public string RegisterSong(string[] args)
-		{
-			// TODO: scheduled for next month
+            foreach (IInstrument instrument in instruments)
+            {
+                performer.AddInstrument(instrument);
+            }
 
-			return $"Registered song {song}";
-		}
+            this.stage.AddPerformer(performer);
 
-		public string SongRegistration(string[] args)
-		{
-			var songName = args[0];
-			var setName = args[1];
+            return $"Registered performer {performer.Name}";
+        }
 
-			if (!this.stage.HasSet(setName))
-			{
-				throw new InvalidOperationException("Invalid set provided");
-			}
+        public string RegisterSong(string[] args)
+        {
+            string songName = args[0];
+            int[] songDurationTokens = args[1]
+                .Split(':')
+                .Select(int.Parse)
+                .ToArray();
 
-			if (!this.stage.HasSong(songName))
-			{
-				throw new InvalidOperationException("Invalid song provided");
-			}
+            int songMinutes = songDurationTokens[0];
+            int songSeconds = songDurationTokens[1];
 
-			var set = this.stage.GetSet(setName);
-			var song = this.stage.GetSong(songName);
+            TimeSpan songDuration = new TimeSpan(0, songMinutes, songSeconds);
 
-			set.AddSong(song);
+            ISong song = new Song(songName, songDuration);
 
-			return $"Added {song} to {set.Name}";
-		}
+            this.stage.AddSong(song);
 
-		// Временно!!! Чтобы работало делаем срез на конец месяца
-		public string AddPerformerToSet(string[] args)
-		{
-			return PerformerRegistration(args);
-		}
+            return $"Registered song {song}";
+        }
 
-		public string PerformerRegistration(string[] args)
-		{
-			var performerName = args[0];
-			var setName = args[1];
+        public string AddPerformerToSet(string[] args)
+        {
+            var performerName = args[0];
+            var setName = args[1];
 
-			if (!this.stage.HasPerformer(performerName))
-			{
-				throw new InvalidOperationException("Invalid performer provided");
-			}
+            if (!this.stage.HasPerformer(performerName))
+            {
+                throw new InvalidOperationException("Invalid performer provided");
+            }
 
-			if (!this.stage.HasSet(setName))
-			{
-				throw new InvalidOperationException("Invalid set provided");
-			}
+            if (!this.stage.HasSet(setName))
+            {
+                throw new InvalidOperationException("Invalid set provided");
+            }
 
-			AddPerformerToSet(args);
+            var performer = this.stage.GetPerformer(performerName);
+            var set = this.stage.GetSet(setName);
 
-			var performer = this.stage.GetPerformer(performerName);
-			var set = this.stage.GetSet(setName);
+            set.AddPerformer(performer);
 
-			set.AddPerformer(performer);
+            return $"Added {performer.Name} to {set.Name}";
+        }
 
-			return $"Added {performer.Name} to {set.Name}";
-		}
+        public string AddSongToSet(string[] args)
+        {
+            var songName = args[0];
+            var setName = args[1];
 
-		public string RepairInstruments(string[] args)
-		{
-			var instrumentsToRepair = this.stage.Performers
-				.SelectMany(p => p.Instruments)
-				.Where(i => i.Wear <= 100)
-				.ToArray();
+            if (!this.stage.HasSet(setName))
+            {
+                throw new InvalidOperationException("Invalid set provided");
+            }
 
-			foreach (var instrument in instrumentsToRepair)
-			{
-				instrument.Repair();
-			}
+            if (!this.stage.HasSong(songName))
+            {
+                throw new InvalidOperationException("Invalid song provided");
+            }
 
-			return $"Repaired {instrumentsToRepair.Length} instruments";
-		}
-	}
+            var set = this.stage.GetSet(setName);
+            var song = this.stage.GetSong(songName);
+
+            set.AddSong(song);
+
+            return $"Added {song} to {set.Name}";
+        }
+
+        public string RepairInstruments(string[] args)
+        {
+            var instrumentsToRepair = this.stage.Performers
+                .SelectMany(p => p.Instruments)
+                .Where(i => i.Wear < 100)
+                .ToArray();
+
+            foreach (var instrument in instrumentsToRepair)
+            {
+                instrument.Repair();
+            }
+
+            return $"Repaired {instrumentsToRepair.Length} instruments";
+        }
+    }
 }

@@ -4,19 +4,17 @@
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
-
 	using Contracts;
 
-	public abstract class ConcertSet
+	public abstract class Set : ISet
 	{
 		private readonly List<IPerformer> performers;
 		private readonly List<ISong> songs;
 
-		protected ConcertSet(string name, TimeSpan maxDuration)
+		protected Set(string name, TimeSpan maxDuration)
 		{
 			this.Name = name;
 			this.MaxDuration = maxDuration;
-
 			this.performers = new List<IPerformer>();
 			this.songs = new List<ISong>();
 		}
@@ -27,16 +25,8 @@
 
 		public TimeSpan ActualDuration => new TimeSpan(this.Songs.Sum(s => s.Duration.Ticks));
 
-		public IReadOnlyCollection<IPerformer> Performers
-		{
-			get { return performers; }
-		}
-
-		public IReadOnlyCollection<ISong> Songs
-		{
-			get { return songs; }
-		}
-
+        public IReadOnlyCollection<IPerformer> Performers => this.performers.AsReadOnly();
+        public IReadOnlyCollection<ISong> Songs => this.songs.AsReadOnly();
 		public void AddPerformer(IPerformer performer) => this.performers.Add(performer);
 
 		public void AddSong(ISong song)

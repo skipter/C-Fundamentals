@@ -16,14 +16,8 @@ namespace FestivalManager.Entities.Instruments
 
 		public double Wear
 		{
-			get
-			{
-				return this.wear;
-			}
-			private set
-			{
-				this.wear = Math.Min(Math.Max(value, 0), 100);
-			}
+            get => this.wear;
+			private set => this.wear = Math.Min(Math.Max(value, 0), MaxWear);
 		}
 
 		protected abstract int RepairAmount { get; }

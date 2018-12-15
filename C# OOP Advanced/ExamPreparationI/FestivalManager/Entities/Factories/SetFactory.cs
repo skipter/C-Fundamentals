@@ -1,39 +1,25 @@
 ﻿using System;
 
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-
-
-
-
-
 namespace FestivalManager.Entities.Factories
 {
-	using Contracts;
-	using Entities.Contracts;
-	using Sets;
+    using System.Linq;
+    using System.Reflection;
+    using Contracts;
+    using Entities.Contracts;
 
-	public class SetFactory : ISetFactory
-	{
-		public ISet CreateSet(string name, string type)
-		{
-			if (type == "Short")
-			{
-				return new Short(name);
-			}
-			else if (type == "Medium")
-			{
-				return new Medium(name);
-			}
-			else if (type == "Long")
-			{
-				return new Long(name);
-			}
-		}
-	}
+    public class SetFactory : ISetFactory
+    {
+        public ISet CreateSet(string name, string type)
+        {
+            var allTypes = Assembly.GetCallingAssembly().GetTypes();
 
+            var setType = allTypes
+                .Where(t => typeof(ISet).IsAssignableFrom(t))
+                .FirstOrDefault(t => t.Name == type);
 
+            var set = (ISet)Activator.CreateInstance(setType, name);
 
-
+            return set;
+        }
+    }
 }
