@@ -1,0 +1,22 @@
+To create an instance of the calculator class:
+
+// get type of class Calculator from just loaded assembly
+Type calcType = testAssembly.GetType("Test.Calculator");
+
+// create instance of class Calculator
+object calcInstance = Activator.CreateInstance(calcType);
+
+And access its members (the following examples illustrate getting values for the public double Number property):
+
+// get info about property: public double Number
+PropertyInfo numberPropertyInfo = calcType.GetProperty("Number");
+
+// get value of property: public double Number
+double value = (double)numberPropertyInfo.GetValue(calcInstance, null);
+
+// set value of property: public double Number
+numberPropertyInfo.SetValue(calcInstance, 10.0, null);
+
+//  List all modules in the assembly.
+        Assembly curAssembly = typeof(Program).Assembly;
+        Console.WriteLine("The current executing assembly is {0}.", curAssembly);

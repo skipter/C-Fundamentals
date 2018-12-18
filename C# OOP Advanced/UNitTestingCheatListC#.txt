@@ -1,0 +1,79 @@
+NUnit
+NUnit3TestAdapter
+Microsoft.Net.Test.Sdk
+
+Нa exam-a GetCallingAssembly()
+
+За тестовете гледаме -> bools isComplete ?
+					 -> appned text ? дали връща съшия отговор (ние го пишем в унит теста)
+					 -> bools isOverbooked ? да получим съобщения , ако има
+					 -> хващаме стрингове
+					 
+					 Гледаме какво ни трябва в класа, за тези методи и тяхното тестване.
+
+					 
+					 
+		[Test]
+        public void CheckIfTripIsCompleted()
+        {
+            var airport = new Airport();
+            var airplane = new LightAirplane();
+            var trip = new Trip("Tuk", "Tam", airplane);
+            var passenger = new Passenger("Gosho");
+            var bag = new Bag(passenger, new Item[] { new Colombian() });
+            passenger.Bags.Add(bag);
+            trip.Complete(); //to skip it
+            var flightController = new FlightController(airport);
+
+            var expectedResult = flightController.TakeOff(); 2. <- after debug we take result for expectedResult and copy it to actualResult.
+            var actualResult = string.Empty;       1. <- Here we put brake point and debug current test
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+		
+private class Method
+{
+	public Method(Type returnType, string name, params Type[] parameterType) 
+	{
+		this.ReturnType = returnType;
+		this.Name = name;
+		this.ParameterType = parameterType;
+	}
+	
+	public Type ReturnType {get;}
+	public string Name {get;}
+	public Type[] ParameterType {get;}
+			
+}
+
+
+[Test]
+public void ValidateMethods()
+{
+	var type = GetType("Table");
+	
+	var methods = new[] 
+	{
+		new Method(typeof(void), "Test", typeof(int)),
+		new Method(typeof(void), "Test2", typeof(IFood))
+	};
+	ValidateMethods(type, methods);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

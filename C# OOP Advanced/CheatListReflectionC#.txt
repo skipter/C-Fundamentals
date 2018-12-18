@@ -1,0 +1,28 @@
+
+	
+		COMMAND PATTERN with REFLECTION:
+		
+		public class CommandIntrepeter : ICommandIntrepeter
+		{
+			public string Read(string[] inputArgs)
+			{
+				string commandName = inputArgs[0];
+				
+				var Type = Assembly.GetExecutingAssembly() //or GetCallingAssembly for judge
+				.GetTypes().FirstOrDefault(x => x.Name == commandName);
+				
+				var instance = Activator.CreateInstance(type);
+				var result = ((ICommand)instance).Execute();
+				
+				return result;
+				
+			}
+		}
+			//IAirplaneFactory си остава в airplaneController-a и си викаме обекта по нормален начин. 
+			//От там ни се връща рефлекшата, който проверява асемблито, за такова име и намира името на самолетите,
+			//което идва от интерфейса IAirplaneFactory, което подава стринг. x.Name == type
+		 var airplaneType = Assembly.GetCallingAssembly().GetTypes().FirstOrDefault(x => x.Name == type);
+            var airplaneInstance = (IAirplane)Activator.CreateInstance(airplaneType);
+            //(airplaneType, new object[] {1, 2, 3,}) if ctor want args
+
+            return airplaneInstance;

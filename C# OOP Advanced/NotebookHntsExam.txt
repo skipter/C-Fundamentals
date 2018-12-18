@@ -1,0 +1,29 @@
+Structure
+
+interfaces
+abstract classes - base
+derivered classes - наследници
+valid prop. - get; private set; (set correctly)
+Ctor ->
+Methods -> дали ги и дали работят
+private field List -> readonly / IReadOnlyCollection -> AsReadOnly() 
+
+В Assert-a пишем reason-a - така ще видим какво гърми в judge.
+
+за private field -> NonPublic | Instance
+Check abstract class -> Assert.That(vehicleType.IsAbstract, $"reason for judge")
+
+Valid abstract Child Classes
+
+Ctor - check protected
+		flags - NonPublic | Instance.GetConstructors(flags).FirstOrDefault()
+		
+		GetFields("name", BindingFlags. ...)
+		
+		GetMethod / s
+		GetProperty / s
+		GetField / s
+		
+		Без рефлекшън в юнит тестовете на изпита.
+		Търсим бъгове/ изпуснати символи, правописни грешки, грешни имена на класове и променливи, объркани <>=
+		TargetInvocativeException(); - exception for reflection
